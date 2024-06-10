@@ -1,6 +1,6 @@
-const Admin = require('../models/Admin');
-const Faculty = require('../models/Faculty');
-const jwt = require('jsonwebtoken');
+const Admin = require("../models/Admin");
+const Faculty = require("../models/Faculty");
+const jwt = require("jsonwebtoken");
 
 const secret = "secret";
 
@@ -13,14 +13,14 @@ exports.adminFacultyLogin = async (req, res) => {
     if (!user) {
       user = await Faculty.findOne({ email });
       if (!user) {
-        return res.status(401).json({ message: 'Invalid email and password' });
+        return res.status(401).json({ message: "Invalid email or password" });
       }
     }
     let isAdmin = user.isAdmin;
     // Validate password
     const isValidPassword = user.password === password;
     if (!isValidPassword) {
-      return res.status(401).json({ message: 'Invalid email and password' });
+      return res.status(401).json({ message: "Invalid email or password" });
     }
 
     const token = jwt.sign({ id: user._id, isAdmin: isAdmin }, secret);
