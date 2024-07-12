@@ -17,6 +17,8 @@ function RemoveFacultyModal({ show, handleClose, setMessage, handleShowToast }) 
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        const lowercasedEmail = email.toLowerCase(); 
+        
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
             event.preventDefault();
@@ -27,7 +29,7 @@ function RemoveFacultyModal({ show, handleClose, setMessage, handleShowToast }) 
 
         setLoading(true);
         try {
-            const response = await fetch(`http://localhost:5173/api/faculty/${email}`, {
+            const response = await fetch(`http://localhost:5173/api/faculty/${lowercasedEmail}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'

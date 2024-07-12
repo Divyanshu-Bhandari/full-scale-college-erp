@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const connectDB = async () => {
   try {
     await mongoose.connect(
-      "mongodb+srv://<Your Name>:<Your Passowrd>@projects.mteujon.mongodb.net/full_scale_erp"
+      "mongodb+srv://<USERNAME>:<PASSWORD>@projects.mteujon.mongodb.net/full_scale_erp"
     );
     console.log("MongoDB connected successfully");
   } catch (error) {

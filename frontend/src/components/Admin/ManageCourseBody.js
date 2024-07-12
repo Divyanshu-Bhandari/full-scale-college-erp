@@ -168,8 +168,8 @@ function ManageCoursesBody() {
                         </div>
                     </div>
                 </div>
-                <AddCourseModal show={showAddCourseModal} handleClose={handleCloseAddCourseModal} setMessage={setMessage} handleShowToast={handleShowToast} />
-                <RemoveCourseModal show={showRemoveCourseModal} handleClose={handleCloseRemoveCourseModal} setMessage={setMessage} handleShowToast={handleShowToast} />
+                <AddCourseModal show={showAddCourseModal} handleClose={handleCloseAddCourseModal} setMessage={setMessage} handleShowToast={handleShowToast}/>
+                <RemoveCourseModal show={showRemoveCourseModal} handleClose={handleCloseRemoveCourseModal} setMessage={setMessage} handleShowToast={handleShowToast} modalUpdated={modalUpdated} />
                 <UpdateCourseModal show={showUpdateCourseModal} handleClose={handleCloseUpdateCourseModal} course={selectedCourse} setMessage={setMessage} handleShowToast={handleShowToast} />
                 <NotificationToast show={showToast} setShow={setShowToast} message={message} />
             </div>

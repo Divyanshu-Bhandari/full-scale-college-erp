@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Form, Modal, Spinner } from 'react-bootstrap';
 
-function AddCourseModal({ show, handleClose, setMessage, handleShowToast }) {
+function AddCourseModal({ show, handleClose, setMessage, handleShowToast}) {
     const [validated, setValidated] = useState(false);
     const [name, setName] = useState('');
     const [loading, setLoading] = useState(false);
 
     const handleNameChange = (e) => {
-        setName(e.target.value);
+        setName(e.target.value); 
     };
 
     const handleSubmit = async (event) => {

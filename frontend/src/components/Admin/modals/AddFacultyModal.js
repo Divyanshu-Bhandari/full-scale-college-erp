@@ -28,6 +28,8 @@ function AddFacultyModal({ show, handleClose, setMessage, handleShowToast }) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const form = event.currentTarget;
+        const lowercasedEmail = email.toLowerCase(); 
+
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
@@ -42,7 +44,7 @@ function AddFacultyModal({ show, handleClose, setMessage, handleShowToast }) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name, email, password })
+            body: JSON.stringify({ name, email: lowercasedEmail, password })
         });
         setLoading(false);
 

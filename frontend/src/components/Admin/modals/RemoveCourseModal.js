@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form, Modal, Spinner } from 'react-bootstrap';
 
-function RemoveCourseModal({ show, handleClose, setMessage, handleShowToast }) {
+function RemoveCourseModal({ show, handleClose, setMessage, handleShowToast, modalUpdated }) {
     const [validated, setValidated] = useState(false);
     const [courseName, setCourseName] = useState('');
     const [loading, setLoading] = useState(false);
@@ -9,13 +9,15 @@ function RemoveCourseModal({ show, handleClose, setMessage, handleShowToast }) {
 
     useEffect(() => {
         fetchCourses();
-    }, []);
+    }, [modalUpdated]);
 
-    const fetchCourses = async () => {
+    const fetchCourses = async () => { 
         try {
             const response = await fetch('http://localhost:5173/api/courses');
             if (!response.ok) {
-                throw new Error('Failed to fetch courses');
+                setMessage("Failed to fetch course");
+                handleShowToast();
+                return;
             }
             const data = await response.json();
             setCourses(data);

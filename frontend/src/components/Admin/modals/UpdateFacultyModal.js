@@ -35,6 +35,8 @@ function UpdateFacultyModal({ show, handleClose, faculty, setMessage, handleShow
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        const lowercasedEmail = email.toLowerCase(); 
+        
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
             event.preventDefault();
@@ -48,7 +50,7 @@ function UpdateFacultyModal({ show, handleClose, faculty, setMessage, handleShow
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name, email, password })
+            body: JSON.stringify({ name, email: lowercasedEmail, password })
         });
         setLoading(false);
 
