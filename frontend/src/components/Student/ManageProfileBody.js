@@ -132,6 +132,7 @@ function ManageProfileBody() {
                                 required
                                 value={email}
                                 onChange={handleEmailChange}
+                                disabled
                             />
                             <Form.Control.Feedback type="invalid">
                                 Enter a valid email address

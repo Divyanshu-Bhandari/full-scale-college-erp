@@ -8,23 +8,23 @@ function RemoveCourseModal({ show, handleClose, setMessage, handleShowToast, mod
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
-        fetchCourses();
-    }, [modalUpdated]);
-
-    const fetchCourses = async () => { 
-        try {
-            const response = await fetch('http://localhost:5173/api/courses');
-            if (!response.ok) {
-                setMessage("Failed to fetch course");
-                handleShowToast();
-                return;
+        const fetchCourses = async () => {
+            try {
+                const response = await fetch('http://localhost:5173/api/courses');
+                if (!response.ok) {
+                    setMessage("Failed to fetch course");
+                    handleShowToast();
+                    return;
+                }
+                const data = await response.json();
+                setCourses(data);
+            } catch (error) {
+                console.error(error);
             }
-            const data = await response.json();
-            setCourses(data);
-        } catch (error) {
-            console.error(error);
-        }
-    };
+        };
+
+        fetchCourses();
+    }, [modalUpdated, setMessage, handleShowToast]);
 
     const handleCourseNameChange = (e) => {
         setCourseName(e.target.value);
@@ -64,6 +64,7 @@ function RemoveCourseModal({ show, handleClose, setMessage, handleShowToast, mod
             }
         } catch (error) {
             console.error(error);
+            setLoading(false);
         }
     };
 

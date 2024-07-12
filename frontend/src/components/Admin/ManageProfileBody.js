@@ -9,7 +9,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import NotificationToast from '../NotificationToast';
 
 function ManageProfileBody() {
-    const [faculty, setFaculty] = useState([]);
+    const [admin, setAdmin] = useState([]);
     const [validated, setValidated] = useState(false);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -31,32 +31,30 @@ function ManageProfileBody() {
                 const decodedToken = jwtDecode(token);
                 const { id } = decodedToken;
                 try {
-                    const response = await fetch(`http://localhost:5173/api/faculty/${id}`);
+                    const response = await fetch(`http://localhost:5173/api/admin/${id}`);
                     if (response.ok) {
-                        const facultyData = await response.json();
-                        setFaculty(facultyData);
+                        const adminData = await response.json();
+                        setAdmin(adminData);
                     } else {
-                        console.error('Failed to fetch faculty data');
+                        console.error('Failed to fetch admin data');
                     }
                 } catch (error) {
                     setMessage("Somethigh went wrong");
                     handleShowToast();
-                    console.error('Error fetching faculty data:', error);
+                    console.error('Error fetching admin data:', error);
                 }
             }
         };
-
         fetchData();
     }, []);
 
-
     useEffect(() => {
-        if (faculty) {
-            setName(faculty.name || '');
-            setEmail(faculty.email || '');
-            setPassword(faculty.password || '');
+        if (admin) {
+            setName(admin.name || '');
+            setEmail(admin.email || '');
+            setPassword(admin.password || '');
         }
-    }, [faculty]);
+    }, [admin]);
 
     const handleNameChange = (e) => {
         setName(e.target.value);
@@ -82,7 +80,7 @@ function ManageProfileBody() {
 
         setValidated(true);
         setLoading(true);
-        const response = await fetch(`http://localhost:5173/api/faculty/${faculty._id}`, {
+        const response = await fetch(`http://localhost:5173/api/admin/${admin._id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

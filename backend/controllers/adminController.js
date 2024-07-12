@@ -14,6 +14,19 @@ exports.getAdminById = async (req, res) => {
   }
 };
 
+exports.updateAdmin = async (req, res) => {
+  try {
+    //update admin
+    const updatedAdmin = await Admin.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updatedAdmin) {
+      return res.status(404).json({ message: 'Admin not found' });
+    }
+    res.json(updatedAdmin);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 exports.createFaculty = async (req, res) => {
   try {
     // Create faculty

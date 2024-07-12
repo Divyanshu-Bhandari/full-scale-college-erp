@@ -6,6 +6,7 @@ import AdminFacultyLogin from './components/AdminFacultyLogin';
 import StudentLogin from './components/StudentLogin';
 
 import AdminDashboard from './components/Admin/AdminDashboard';
+import AdminManageProfile from './components/Admin/ManageProfile';
 import ManageStudents from './components/Admin/ManageStudents';
 import ManageFaculty from './components/Admin/ManageFaculty';
 import ManageCourse from './components/Admin/ManageCourse';
@@ -85,6 +86,10 @@ function App() {
         <Route
           path="/admin/dashboard"
           element={<PrivateRoute element={<AdminDashboard />} />}
+        />
+        <Route
+          path="/admin/dashboard/manage-profile"
+          element={<PrivateRoute element={<AdminManageProfile />} />}
         />
         <Route
           path='/admin/dashboard/manage-students'
